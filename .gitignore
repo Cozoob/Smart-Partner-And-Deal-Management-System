@@ -1,0 +1,48 @@
+# Salesforce DX project configuration
+.sfdx/
+coverage/
+node_modules/
+test-result-codecoverage.json
+test-result.json
+
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# Local environment files
+.env
+.env.local
+
+# Mac/Linux system files
+.DS_Store
+Thumbs.db
+
+# Apex test cache
+.apex-sample.json
+
+# Push/Pull conflict resolution backups
+*.dup
+
+# LWC Jest test coverage
+jest.config.js
+coverage/
+
+# Scratch org definition files generated on the fly
+orgInfo.json
+scratch-def.json
+
+# Untracked default org information
+orgs/
+
+# SFDX CLI plugin updates
+.sf/
+
+# Package directories (optional: if generated dynamically)
+**/tmp/
+**/dist/
+
+# Log files
+*.log
+
+# Salesforce scripts
+scripts/
