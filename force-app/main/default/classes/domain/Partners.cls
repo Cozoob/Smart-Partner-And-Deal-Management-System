@@ -31,14 +31,14 @@ public inherited sharing class Partners extends ApplicationSObjectDomain impleme
         this.validateRegion(getChangedRecords(new Set<String>{ 'Region__c' }));
     }
 
-    public Map<Partner__c, Boolean> validateRegion() {
+    public Map<Id, Boolean> validateRegion() {
         return validateRegion((List<Partner__c>) getRecords());
     }
 
-    public Map<Partner__c, Boolean> validateRegion(List<Partner__c> partners) {
-        Map<Partner__c, Boolean> validations = new Map<Partner__c, Boolean>();
+    public Map<Id, Boolean> validateRegion(List<Partner__c> partners) {
+        Map<Id, Boolean> validations = new Map<Id, Boolean>();
         for (Partner__c partner : partners) {
-            validations.put(partner, REGIONS.contains(partner.Region__c));
+            validations.put(partner.Id, REGIONS.contains(partner.Region__c));
         }
         return validations;
     }
