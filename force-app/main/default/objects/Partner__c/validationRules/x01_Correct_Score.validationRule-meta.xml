@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+<ValidationRule xmlns="https://soap.sforce.com/2006/04/metadata">
     <fullName>x01_Correct_Score</fullName>
     <active>true</active>
     <description>The result cannot be a negative number or greater than 100. Score Error x01.</description>
