@@ -56,4 +56,15 @@ public inherited sharing class Partners extends ApplicationSObjectDomain impleme
             partner.Status__c = 'Active';
         }
     }
+
+    private void generateUniqueExternalId() {
+         for(Partner__c partner : (List<Partner__c>) getRecords()) {
+            if(String.isBlank(partner.External_Id__c)) {
+                  Long rand = Crypto.getRandomLong();
+                    String raw = String.valueOf(rand) + System.currentTimeMillis();
+                    Blob hash = Crypto.generateDigest('SHA-256', Blob.valueOf(raw));
+                    partner.External_Id__c = EncodingUtil.convertToHex(hash).substring(0, 16);
+            }
+        }
+    }
 }
