@@ -10,7 +10,7 @@ public inherited sharing class CommunityPortalService implements ICommunityPorta
         IPartners partners = (IPartners) Application.Domain.newInstance(
             new Set<Id>{userId}
         );
-        Map<Id, Boolean> validatedPartnersByRegion = partners.validateRegion();
+        Map<Id, Boolean> validatedPartnersByRegion = new  Map<Id, Boolean>();
         return validatedPartnersByRegion.get(userId);
     }
 }

@@ -1,10 +1,4 @@
 public inherited sharing class Partners extends ApplicationSObjectDomain implements IPartners {
-    private static final Set<String> REGIONS = new Set<String>{
-        'APAC',
-        'EMEA',
-        'NA'
-    };
-
     public static IPartners newInstance(List<Partner__c> records) {
         return (IPartners) Application.Domain.newInstance(records);
     }
@@ -24,22 +18,42 @@ public inherited sharing class Partners extends ApplicationSObjectDomain impleme
     }
 
     public override void onBeforeInsert() {
-        this.validateRegion(getRecords());
+        this.setPendingStatus();
     }
 
     public override void onBeforeUpdate(Map<Id, SObject> existingRecords) {
-        this.validateRegion(getChangedRecords(new Set<String>{ 'Region__c' }));
+        this.setActiveStatus();
     }
 
-    public Map<Id, Boolean> validateRegion() {
-        return validateRegion((List<Partner__c>) getRecords());
+    public Map<Id, Boolean> validateEmail() {
+        return validateEmail((List<Partner__c>) getRecords());
     }
 
-    public Map<Id, Boolean> validateRegion(List<Partner__c> partners) {
+    public Map<Id, Boolean> validateNotBlankExternalId() {
+        return validateNotBlankExternalId((List<Partner__c>) getRecords());
+    }
+
+    private Map<Id, Boolean> validateEmail(List<Partner__c> partners) {
         Map<Id, Boolean> validations = new Map<Id, Boolean>();
-        for (Partner__c partner : partners) {
-            validations.put(partner.Id, REGIONS.contains(partner.Region__c));
-        }
+        // todo
         return validations;
+    }
+
+    private Map<Id, Boolean> validateNotBlankExternalId(List<Partner__c> partners) {
+        Map<Id, Boolean> validations = new Map<Id, Boolean>();
+        // todo
+        return validations;
+    }
+
+    private void setPendingStatus() {
+        for(Partner__c partner : (List<Partner__c>) getRecords()) {
+            partner.Status__c = 'Pending';
+        }
+    }
+
+     private void setActiveStatus() {
+        for(Partner__c partner : (List<Partner__c>) getRecords()) {
+            partner.Status__c = 'Active';
+        }
     }
 }

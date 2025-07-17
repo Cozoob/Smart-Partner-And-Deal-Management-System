@@ -1,3 +1,4 @@
 public interface IPartners extends IApplicationSObjectDomain {
-    Map<Id, Boolean> validateRegion();
+    Map<Id, Boolean> validateEmail();
+    Map<Id, Boolean> validateNotBlankExternalId();
 }
